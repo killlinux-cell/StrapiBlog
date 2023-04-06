@@ -1,0 +1,18 @@
+
+  <div>
+    <h2>The Blog</h2>
+    <div class="articles">
+      Write article here
+    </div>
+  </div>
+
+  <script>
+    const displayArticles = async () => {
+      const res = await fetch('/articles')
+      const articles = await res.json()
+
+      console.log("displayArticles articles", articles)
+    }
+
+    displayArticles()
+  </script>
