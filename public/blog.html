@@ -1,17 +1,38 @@
 
   <div>
     <h2>The Blog</h2>
-    <div class="articles">
+    <div id="articles">
       Write article here
     </div>
   </div>
 
-  <script>
+  <script src="">
     const displayArticles = async () => {
-      const res = await fetch('/articles')
+      const res = await fetch('/api/articles')
       const articles = await res.json()
 
       console.log("displayArticles articles", articles)
+
+      const container = document.querySelector('#articles')
+      container.innerHTML=''
+      /* IMAGE */
+      articles.array.forEach(article => {
+        const image = document.createElement('img')
+        image.setAttribute('src', article.thumbnail.url)
+
+        container.appendChild(image)
+
+      /* TITLE */
+      const title = document.createElement('h3')
+      title.innerText = article.title
+      container.appendChild(title)
+
+      /* CONTENT */
+      const content = document.createElement('div')
+      content.innerText = article.content
+      container.appendChild(content)
+
+      })
     }
 
     displayArticles()
